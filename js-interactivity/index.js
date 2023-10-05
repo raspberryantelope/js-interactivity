@@ -1,3 +1,51 @@
+let message = document.querySelector("#message")
+
+console.log("Hello World")
+
+let revealMessage = function() {
+    message.classList.remove("hide")
+    setTimeout(function() {
+        message.classList.add("hide")
+    }, 1000)
+}
+
+function addMovie(event) {
+    event.preventDefault()
+    let inputField = document.querySelector("input").value
+    let movie = document.createElement("li")
+    let movieTitle = document.createElement("span")
+    movieTitle.textContent = inputField
+    movieTitle.addEventListener("click", crossOffMovie)
+    movie.appendChild(movieTitle)
+    let deleteBtn = document.createElement("button")
+    deleteBtn.textContent = "X"
+    deleteBtn.addEventListener("click", deletThis)
+    movie.appendChild(deleteBtn)
+    document.querySelector("ul").appendChild(movie)
+    document.querySelector("input").value = ""
+    message.textContent = `${inputField} added!`
+    revealMessage()
+}
+
+let crossOffMovie = function(event) {
+    event.target.classList.toggle("checked")
+    if (event.target.classList.contains("checked")) {
+        message.textContent = `${event.target.textContent} watched!`
+    } else {
+        message.textContent = `${event.target.textContent} misclicked?`
+    }
+    revealMessage()
+}
+
+function deletThis(event) {
+    let movieTitleForDeletionMessage = event.target.parentNode.childNodes[0].textContent
+    event.target.parentNode.remove()
+    message.textContent = `${movieTitleForDeletionMessage} deleted!`
+    revealMessage()
+}
+
+document.querySelector("form").addEventListener("submit", addMovie)
+
 /**
 MOVIE LIST
 Summary
@@ -55,7 +103,7 @@ Instructions
     If it doesn’t appear, check the file path in your <script> tag’s src attribute.
 
 */
-console.log("Hello World")
+
 
 /*
 Step 2
@@ -288,7 +336,7 @@ Instructions
     At the top of the revealMessage function, remove the hide class from message –
      this will ensure that the message isn’t hidden when the function is first called.*/
 
-let message = document.querySelector("#message")
+/*let message = document.querySelector("#message")
 
 let revealMessage = function() {
     message.classList.remove("hide")
@@ -296,7 +344,7 @@ let revealMessage = function() {
         message.classList.add("hide")
     }, 1000)
 }
-/*let crossOffMovie = function(event) {
+let crossOffMovie = function(event) {
     event.target.classList.toggle("checked")
     if (event.target.classList.contains("checked")) {
         message.textContent = "Movie watched!"
@@ -304,7 +352,7 @@ let revealMessage = function() {
         message.textContent = "Misclick moment?"
     }
     revealMessage()
-}*/
+}
 function addMovie(event) {
     event.preventDefault()
     let inputField = document.querySelector("input").value
@@ -323,13 +371,13 @@ function addMovie(event) {
     revealMessage()
 }
 
-/*function deletThis(event) {
+function deletThis(event) {
     let movieTitleForDeletionMessage = event.target.parentNode.childNodes[0].textContent
     event.target.parentNode.remove()
     message.textContent = `${movieTitleForDeletionMessage} deleted!`
     revealMessage()
-}*/
-document.querySelector("form").addEventListener("submit", addMovie)
+}
+document.querySelector("form").addEventListener("submit", addMovie)*/
 
 /**Step 2
 Summary
@@ -346,7 +394,7 @@ Instructions
 
     Test it out!*/
 
-let crossOffMovie = function(event) {
+/*let crossOffMovie = function(event) {
     event.target.classList.toggle("checked")
     if (event.target.classList.contains("checked")) {
         message.textContent = `${event.target.textContent} watched!`
@@ -354,7 +402,7 @@ let crossOffMovie = function(event) {
         message.textContent = `${event.target.textContent} misclicked?`
     }
     revealMessage()
-}
+}*/
 
 /**Step 3
 Summary
@@ -368,9 +416,10 @@ Instructions
     But the deleteMovie function runs when the ‘X’ button is clicked. So the title is actually a sibling element of the button.
     You’ll need to explore the properties available on event.target.parentNode to get at that movie title text.*/
 
+/*
 function deletThis(event) {
     let movieTitleForDeletionMessage = event.target.parentNode.childNodes[0].textContent
     event.target.parentNode.remove()
     message.textContent = `${movieTitleForDeletionMessage} deleted!`
     revealMessage()
-}
+}*/
